@@ -1,0 +1,40 @@
+// ooatelier basic setting _210331
+
+@import "./variables.scss";
+
+@mixin web-1920 {
+    @media screen and (max-width: #{$web-1920}) {
+        @content;
+    }
+}
+
+@mixin web-1440 {
+    @media screen and (max-width: #{$web-1440}) {
+        @content;
+    }
+}
+
+@mixin web-1080 {
+    @media screen and (max-width: #{$web-1080}) {
+        @content;
+    }
+}
+
+@mixin tab-768 {
+    @media screen and (max-width: #{$tab-768}) {
+        @content;
+    }
+}
+
+@mixin mob-414 {
+    @media screen and (max-width: #{$mob-414}) {
+        @content;
+    }
+}
+
+@mixin mob-375 {
+    @media screen and (max-width: #{$mob-375}) {
+        @content;
+    }
+}
+

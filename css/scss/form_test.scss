@@ -1,0 +1,327 @@
+@import "./basic.scss";
+@import "./mixins.scss";
+
+
+section {
+  @include viewWidth_w;
+}
+
+.title_w {
+  @include title_w;
+}
+
+.subT_w {
+  @include subT_w;
+}
+
+.txt_w {
+  @include txt_w;
+}
+
+.txt_s_w {
+  @include txt_s_w;
+}
+
+@include tab-768 {
+  section {
+    @include viewWidth_t;
+  }
+
+  .title_w,
+  .subT_w {
+    font-size: 36px;
+  }
+
+  .txt_w {
+    font-size: 16.5px;
+  }
+
+  .txt_s_w {
+    font-size: 14px;
+  }
+}
+
+@include mob-414 {
+  section {
+    @include viewWidth_m;
+  }
+
+  .title_w,
+  .subT_w {
+    font-size: 30px;
+  }
+}
+
+// wrap 
+p {
+  color: $bk;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+}
+
+.container {
+  overflow: hidden;
+}
+
+.highlight {
+  display: inline-block;
+  position: relative;
+}
+
+.highlight::after {
+  content: "";
+  display: inline-block;
+  width: 110%;
+  height: .5em;
+  background: $high;
+  position: absolute;
+  z-index: -1;
+  top: 55%;
+  left: 0;
+  transform: skewX(-15deg);
+}
+
+
+
+
+.contact_wrap {
+  @include viewWidth_w;
+  display: flex;
+  margin: 140px auto 120px;
+  padding: 3em 0 0;
+  justify-content: space-between;
+}
+
+
+.tt_title {
+  width: 30%;
+
+  h3 {
+    color: $grey_light;
+  }
+}
+
+.contact_form {
+  width: 65%;
+  // margin: 0 auto;
+  // background: lemonchiffon;
+  // border: 1px solid red;
+
+  form {
+    // background-color: rgb(51, 51, 51);
+    width: 100%;
+    max-width: 600px;
+    // padding: 3em;
+    border-radius: 20px;
+    color: red;
+
+    label {
+      display: block;
+      // width: 50vw;
+      font-size: 18px;
+      font-weight: 600;
+      color: #6854C5;
+
+      span {
+        display: inline-block;
+        padding: 0 0 12px 18px;
+      }
+
+      input,
+      textarea {
+        display: block;
+        // font-size: 16px;
+        // background: rgb(99, 99, 99);
+        // border-bottom: 2px solid #0033A0;
+        border-radius: 30px;
+        border: none;
+        appearance: auto;
+        color: black;
+        width: 100%;
+        background: #fafafa;
+        box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),
+          3px 3px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        background: $fff;
+      }
+
+      input::placeholder,
+      textarea::placeholder {
+        color: rgb(187, 187, 187);
+        font-weight: normal;
+      }
+
+      // checkbox
+
+      .check_box {
+        position: relative;
+
+        input {
+          display: none;
+        }
+
+        input[id="cb1"]+label,
+        input[id="cb2"]+label {
+          z-index: 0;
+          position: absolute;
+          left: 0;
+          top: 4px;
+          bottom: 10px;
+          right: 10px;
+          transition: all 0.3s ease;
+          cursor: pointer;
+          width: 18px;
+          border: 3px solid #585858;
+          height: 18px;
+        }
+
+        input[id="cb1"]:checked+label,
+        input[id="cb2"]:checked+label {
+          z-index: 0;
+          display: inline-block;
+          transform: rotate(-50deg) translate(5px, -9px);
+          transition: all 0.3s ease;
+          width: 18px;
+          border-top-color: transparent;
+          border-right-color: transparent;
+          border-bottom-color: #B3E7B1;
+          border-left-color: transparent;
+          height: 18px;
+          background: $fff;
+        }
+
+        input[id="cb1"]:checked+label::before,
+        input[id="cb2"]:checked+label::before {
+          content: "";
+          position: absolute;
+          right: 0;
+          bottom: -2px;
+          width: 100%;
+          height: 10px;
+          border-left: 3px solid #B3E7B1;
+        }
+
+        span {
+          padding: 0 0 0 22px;
+        }
+      }
+
+      textarea {
+        // width: 80%;
+        height: 10em;
+      }
+    }
+
+    .nameSort {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .form_sort {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 240px;
+
+      .check_box {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 18px;
+
+        input {
+          width: auto;
+        }
+      }
+    }
+
+    button {
+      display: block;
+      float: right;
+      padding: 15px;
+      color: #fff;
+      background: #0033A0;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+  }
+}
+
+
+@include web-1080 {
+  .contact_wrap {
+    display: block;
+    padding-top: 80px;
+
+    .tt_title {
+      width: 100%;
+
+      h3 {
+        text-align: right;
+      }
+    }
+
+    .contact_form {
+      width: 100%;
+
+      form {
+        max-width: none;
+      }
+
+      .form_name {
+        width: 40%;
+      }
+    }
+  }
+}
+
+@include tab-768 {
+  .contact_wrap {
+    @include viewWidth_t;
+
+    .subT_w {
+      font-size: 32px;
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .contact_wrap {
+    .contact_form {
+      form {
+        .nameSort {
+          flex-direction: column-reverse;
+          width: auto;
+        }
+
+        .form_name {
+          width: 100%;
+        }
+
+        .form_sort {
+          align-self: flex-end;
+          padding-bottom: 1em;
+        }
+      }
+    }
+  }
+}
+
+
+@include mob-414 {
+  .contact_form {
+    form {
+      button {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  #goAppdown {
+    padding: 10vh 0 5vh;
+  }
+}

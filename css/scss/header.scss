@@ -1,0 +1,383 @@
+@import "./basic.scss";
+@import "./mixins.scss";
+
+// header 
+    #container_wrap {
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .header_wrap {
+        @include viewWidth_w;
+        max-width: 1080px;
+        height: 100px;        
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav_logo {
+        width: 30%;
+        // flex-grow: 0;
+        // border: 1px solid red;
+
+
+        img {
+            width: auto;
+            height: 32px;
+            opacity: .9;
+            animation: flipInX 1s;
+            @keyframes flipInX {
+                from {
+                  transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+                  transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+                  animation-timing-function: ease-in;
+                  animation-timing-function: ease-in;
+                  opacity: 0;
+                }
+              
+                40% {
+                  transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+                  transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+                  animation-timing-function: ease-in;
+                  animation-timing-function: ease-in;
+                }
+              
+                60% {
+                  transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+                  transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+                  opacity: 1;
+                }
+              
+                80% {
+                  transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+                  transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+                }
+              
+                to {
+                  transform: perspective(400px);
+                  transform: perspective(400px);
+                }
+              }
+
+        }
+    }
+
+    
+
+    nav {
+        width: 65%;
+        // flex-grow: 2;
+        // border: 1px solid blue;
+    }
+
+    .nav_menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: .4s;
+
+        a {
+            font-size: 18px;
+            font-weight: 500;
+            width: auto;
+            color: $grey_green;
+            display: inline-block;
+            position: relative;
+            // border: 1px solid red;
+        }
+    
+        a:hover {
+            color: $bk;
+        }
+
+        a::after {
+            content: "";
+            opacity: 0;
+            transition: .4s;
+            width: 100%;
+            height: 4px;
+            background: $bk;
+            position: absolute;
+            top: 198%;
+            right: 0;
+        }
+
+        a:hover::after {
+            opacity: 1;
+            transition: .4s;
+        }
+    }
+
+
+    //header res
+        @include tab-768 {
+            .header_wrap {
+                @include viewWidth_t;
+            }
+        } 
+
+        @include mob-414 {
+            .header_wrap {
+                @include viewWidth_m;
+            }
+        }
+
+    // hamburger btn
+
+    .ham {
+        width: auto;
+        /* border: 1px solid purple; */
+        cursor: pointer; 
+        display: none;
+        position: relative;
+    }   
+
+    // .ham.on {
+    //     display: block;
+    //     /* z-index: 10; */
+
+    // }
+
+    .ham .line {
+        width: 20px;
+        height: 2px;
+        background-color: #34495E;
+        display: block;
+        margin: 5px auto;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* 햄버거 x */
+        .ham.show .line:first-child {
+            transform: rotate(45deg);
+            position: relative;
+            top: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .ham.show .line:nth-child(2) {
+            display: none;
+        } 
+
+        .ham.show .line:last-child {
+            transform: rotate(-45deg);
+            position: relative;
+            top: -2px;
+            transition: all 0.3s ease-in-out;
+    } 
+
+    .appBtn {
+        a {
+            color: #fff;
+            background: $main_normal;
+            padding: 10px 20px;
+            border-radius: 30px;
+        }
+        
+        a:hover {
+            color: $fff;
+            background: $main_light;
+            // line-height: 2.4;
+            transition: .4s;
+            // border: 2px solid $main_normal;
+        }
+
+        a::after {
+            display: none;
+        }
+    }
+
+    .header_bg {
+        width: 100%;
+        height: 94px;
+        position: fixed;
+        z-index: 5;
+        top: 0;
+        left: 0;
+        opacity: 1;
+        background: rgba($color: $fff, $alpha: .7);
+        transition: .4s;
+    }
+
+
+
+
+    // ham menu on
+    @include web-1080 {
+        .header_wrap {
+            height: auto;
+            padding-top: 24px;
+        }
+
+        nav { width: 100%;}
+    
+        .nav_logo img { height: 24px; }
+
+        .nav_menu { 
+            width: 100%;
+            height: 70vh;
+            flex-direction: column; 
+            position: absolute;
+            left: 100%;
+            top: 23vh;
+            opacity: 0;
+
+            li:nth-child(3) a {
+                margin-bottom: 10vh;
+            }
+
+            .appBtn a {
+                padding: 10px 50px;
+            }
+
+            a {
+                font-size: 26px
+            }
+
+            a::after {
+                top: 120%;
+            }
+        }
+
+        .nav_menu.visible {
+            opacity: 1;
+            transition: .4s;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fade .6s ease-in-out;
+            /* font-size: 28px; */
+            /* background: rgba(255, 255, 255, 0.8); */
+        }
+
+        @keyframes fade {
+            0% { opacity: 0;}
+            100% { opacity: 1;}
+        }
+
+        .ham {
+            display: block;
+        }
+
+        .header_bg {
+            opacity: 0;
+            z-index: -1;
+            height: 100vh;
+            background: rgba(255, 255, 255, 1)
+        }
+
+        .header_bg.visible {
+            left: 0;
+            opacity: 1;
+            z-index: 5;
+            transition: .4s;
+        }
+    }
+
+
+
+
+// footer
+
+    footer {
+        @include viewWidth_w; 
+
+        // height: 250px;
+        // border: 1px solid red;
+        margin: 60px auto 32px;
+
+        .foot_logo {
+            padding-bottom: 24px;
+        }
+
+        .foot_txt {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            color: #ccc;
+
+            span {
+                display: inline-block;
+                width: 50px;
+            }
+
+            a {
+                color: #ccc;
+                margin-left: 20px;
+            }
+
+            a:hover {
+                color: #bbb;
+                text-decoration: underline;
+            }
+
+            p {
+                color: #ccc;
+            }
+        }
+
+        .support {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 60px;
+
+            img {
+                // padding: 10px 0;
+                filter: grayscale(100);
+                opacity: .5;
+                
+                object-fit: contain;
+            }
+        }
+    }
+
+        //footer res
+
+        @include web-1080 {
+            footer {
+                // height: 200px;
+                margin: 36px auto 24px;
+
+                .foot_logo img {
+                    height: 24px;
+                }
+            }
+        }
+
+        @include tab-768 {
+            footer {
+                @include viewWidth_t;
+                margin: 24px auto 48px;
+
+                .foot_txt {
+                    display: block;
+
+                    p {
+                        padding-top: 12px;
+                    }
+                }
+
+                
+            }
+        } 
+
+        @include mob-414 {
+            footer {
+                @include viewWidth_m;
+                margin: 36px auto 24px;
+
+                .support {
+                    img {
+                        width: 33%;
+                    }
+                }
+            }
+        }

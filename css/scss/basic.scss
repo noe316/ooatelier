@@ -1,0 +1,407 @@
+@import "./mixins.scss";
+
+// ooatelier color set _ 210331
+
+$bk : #303030;
+$fff : #ffffff;
+
+$grey_dark : #5A5A5A;
+$grey_light : #EDEDED;
+$grey_green : #34495E;
+
+$main_dark : #3A2B7E;
+$main_normal : #6854C5;
+$main_light : #A197CE;
+
+$point_blue : #0033A0;
+$point_pp : #230C8D;
+
+$bg_light : #EEEFF6;
+$high : #B3E7B1;
+// $bg_beige : #FAFAFA;
+$bg_beige : #F6F6F6;
+
+// view size
+@mixin viewWidth_w {
+    width: 75%;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+@mixin viewWidth_t {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@mixin viewWidth_m {
+  width: 85%;
+  margin: 0 auto;
+}
+
+@font-face {
+  font-family: 'Cafe24Ssurround';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cafe24SsurroundAir';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+// ooatelier font set _ 210331
+@mixin title_w {
+  font-family: 'GmarketSansBold';
+    font-size: 48px;
+    font-weight: bold;
+    color: $point_blue;
+    line-height: 1.2;
+    letter-spacing: -.04em;
+}
+
+@mixin downTxt_w {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    color: $fff;
+    line-height: 1.4;
+}
+
+@mixin subT_w {
+  font-family: 'GmarketSansBold';
+    font-size: 36px;
+    color: $bk;
+}
+
+@mixin circle_w {
+    font-size: 28px;
+    // color: $fff;
+    font-weight: bold;
+}
+
+@mixin txt_w {
+    font-size: 21px;
+    font-weight: normal;
+}
+
+@mixin txt_s_w {
+    font-size: 16.5px;
+    font-weight: normal;
+}
+
+// * { font-family: 'Cafe24SsurroundAir'; }
+
+
+
+
+// hightlight
+
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap");
+
+:root {
+  --bg-color-hsl: 59, 3%, 94%;
+  --bg-color: hsl(var(--bg-color-hsl));
+  --bg-color-translucent: hsla(var(--bg-color-hsl), 0.95);
+  --bg-color-highlight: hsl(60, 90%, 50%);
+  --color-text: hsl(192, 14%, 20%);
+  --color-text-highlight: hsl(192, 14%, 0%);
+  --page-width: 80ch;
+  --paragraph-font-size: min(max(1.2rem, 4vw), 1.4rem);
+  --header-font-size: min(max(2rem, 8vw), 4rem);
+  --space: 2rem;
+  --padding: 8vmin;
+  --duration: 1s;
+  --ease: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+
+.text-highlight {
+  all: unset;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: color calc(var(--duration) / 4) var(--ease),
+    background-color calc(var(--duration) / 4) var(--ease),
+    background-size var(--duration) var(--ease);
+
+  &.active {
+    color: var(--color-text-highlight);
+    background-size: 100% 100%;
+  }
+
+  [data-highlight="background"] & {
+    background-image: linear-gradient(
+      var(--bg-color-highlight),
+      var(--bg-color-highlight)
+    );
+  }
+
+  [data-highlight="half"] & {
+    --line-size: 0.5em;
+    background-image: linear-gradient(
+      transparent calc(100% - var(--line-size)),
+      var(--bg-color-highlight) var(--line-size)
+    );
+  }
+
+  [data-highlight="underline"] & {
+    --line-size: 0.15em;
+    background-image: linear-gradient(
+      transparent calc(100% - var(--line-size)),
+      var(--color-text) var(--line-size)
+    );
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    clip-path: inset(100%);
+    clip: rect(1px, 1px, 1px, 1px);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  &::before {
+    content: " [highlight start] ";
+  }
+
+  &::after {
+    content: " [highlight end] ";
+  }
+}
+
+
+// slick dots 
+.slick-dots {
+  display: flex;
+  justify-content: center;
+
+  button {
+    text-indent: -9999px;
+    padding: 6px;
+  }
+
+  button::after {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $grey_light;
+  }
+
+  .slick-active button::after {
+    background: $main_normal;
+  }
+}
+
+// hide scrollbar 
+
+body{ -ms-overflow-style: none; } 
+::-webkit-scrollbar { display: none; }
+
+
+
+
+// app down section
+#goAppdown {
+  width: 100%;
+  max-width: none;
+  position: relative;
+  // height: 100vh;
+  // background-image: url(../img/basic/down_shot.png), linear-gradient(180deg, rgba(223, 195, 251, 0) 0%, #A197CE 100%);
+  // background-repeat: no-repeat, no-repeat;
+  // background-position: right center, center center;
+  // background-size: contain, cover;
+
+  background: linear-gradient(180deg, rgba(223, 195, 251, 0) 0%, #A197CE 100%) no-repeat center center / cover;
+  padding: 50vh 0 20vh;
+  text-align: center;
+  // animation: mov 1s ease-in infinite;
+
+  
+
+  .goAppdown_bg {
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      right: 0;
+      overflow: hidden;
+      // float: right;
+      background: url(../img/basic/down_shot.png) no-repeat right center / contain;
+      animation: mov 4s ease-in-out infinite;
+  }
+
+  @keyframes mov {
+      0% { transform: translateY(0)}
+      50% { transform: translateY(-2vh)}
+      100% { transform: translateY(0)}
+  }
+
+  .goAppdown_wrap {
+      margin: 0 0 0 10vw;
+      width: 50%;
+      color: $fff;
+      position: relative;
+      z-index: 2;
+
+      p {
+          @include downTxt_w;
+          margin-bottom: 60px;
+      }
+
+      .Appdown_btn {
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          font-family: 'Yantramanav', sans-serif;
+      }
+
+      .storeBtn {
+          width: 236px;
+          height: 80px;
+          border-radius: 40px;
+          background: rgba($fff, .8);
+          transition: .4s;
+          
+
+          a {
+              width: 100%;
+              height: 80px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              img {
+                  width: 28px;
+                  height: auto;
+                  margin-right: 12px;
+              }
+
+              strong {
+                  font-size: 22px;
+                  font-weight: bolder;
+                  letter-spacing: -.02em;
+                  color: $main_normal;
+                  opacity: .8;
+                  transition: .4s;
+              }
+          }
+      }
+
+      .storeBtn:hover {
+          background: $fff;
+          box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.1);
+          transition: .4s;
+
+          strong {
+              opacity: 1;
+              transition: .4s;
+          }
+      }
+
+      span {
+          display: inline-block;
+          margin-top: 12px;
+          opacity: .5;
+      }
+
+      .appstore {
+          margin-right: 28px;
+      }
+  }
+}
+
+// res 
+  @include web-1080 {
+      #goAppdown {
+          padding: 40vw 0 10vw;
+          .goAppdown_wrap {
+              p {
+                  font-size: 24px;
+              }
+          }
+
+          .goAppdown_bg {
+              height: 80vw;
+          }
+      }
+  }
+
+  @include tab-768 {
+      #goAppdown {
+          .goAppdown_wrap {
+              width: 90%;
+              margin: 0 auto;
+              
+              p {
+                  font-size: 21px;
+              }
+
+              span {
+                  font-size: 11px;
+              }
+          }
+          
+          .goAppdown_bg {
+              opacity: .3;
+          }
+      }
+  }
+
+  @include mob-414 {
+      #goAppdown {
+          padding: 40vh 0 5vh;
+          .goAppdown_wrap {
+              p {
+                  font-size: 18px;
+                  margin-bottom: 40px;
+              }
+              
+              .Appdown_btn {
+                  display: inline-block;
+                  margin: 0 auto;
+              }
+
+              .storeBtn {
+                  height: 60px;
+
+                  a { height: 60px;}
+              }
+
+              .appstore {
+                  margin: 0 0 12px;
+              }
+          }
+          .goAppdown_bg {
+              width: 140%;
+          }
+      }
+  }
